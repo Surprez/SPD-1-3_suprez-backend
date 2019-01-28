@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/noltron000/SPD-1-3_suprez/issues"
   },
-  "homepage": "https://github.com/noltron000/SPD-1-3_suprez#readme"
+  "homepage": "https://github.com/noltron000/SPD-1-3_suprez#readme",
+  "dependencies": {
+    "express": "^4.16.4"
+  }
 }
