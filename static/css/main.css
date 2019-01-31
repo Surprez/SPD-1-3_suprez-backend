@@ -1,0 +1,69 @@
+@font-face {
+	font-family: 'oneday';
+	src: url('../font/ONEDAY.ttf') format('truetype');
+}
+
+html, body {
+	margin: 20px;
+	padding: 0;
+	color: white;
+	background-color: #111;
+	font-family: sans-serif;
+}
+
+h1, h2, h3 {
+	font-family: 'oneday';
+}
+
+.hero h1 {
+	font-size: 12em;
+}
+
+.navbar {
+	display: flex;
+	flex-wrap: nowrap;
+	justify-content: space-between;
+	position: -webkit-sticky;
+	position: sticky;
+	background-color: green;
+	padding: 6px;
+	top: 0;
+}
+
+.navbar > .spacing {
+	flex-grow: 1;
+}
+
+.hero {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	background-size: cover;
+	background-image: url('/img/purple.jpg');
+	background-color: grey;
+	background-attachment: fixed;
+	height: calc(100vh - 50px);
+}
+
+.hero * {
+	margin: 20px;
+}
+
+.button {
+	color: inherit;
+	padding: 10px;
+	border-radius: 5px;
+	background-color: darkgreen;
+	text-decoration: none;
+}
+
+.button:hover {
+	cursor: pointer;
+}
+
+.call-to-action button {
+	display: block;
+	width: fit-content;
+}
