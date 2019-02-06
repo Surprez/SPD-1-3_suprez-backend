@@ -1,22 +1,49 @@
-@font-face {
-	font-family: 'oneday';
-	src: url('../font/ONEDAY.ttf') format('truetype');
+:root {
+	--color-subtle: white;
+	--color-middle: lightblue;
+	--color-bright: blue;
 }
 
 html, body {
+	color: var(--color-subtle);
+	font-size: 100%;
 	margin: 20px;
 	padding: 0;
-	color: white;
 	background-color: #111;
-	font-family: sans-serif;
 }
 
-h1, h2, h3 {
-	font-family: 'oneday';
+h1, h2, h3, h4, h5, h6 {
+	margin: 0.5em 0;
 }
 
-.hero h1 {
+h1 {
+	color: var(--color-bright);
 	font-size: 12em;
+}
+
+h2 {
+	color: var(--color-bright);
+	font-size: 6em;
+}
+
+h3 {
+	color: var(--color-bright);
+	font-size: 4em;
+}
+
+h4 {
+	color: var(--color-middle);
+	font-size: 2.5em;
+}
+
+h5 {
+	color: var(--color-middle);
+	font-size: 1.5em;
+}
+
+h6 {
+	color: var(--color-middle);
+	font-size: 1em;
 }
 
 .navbar {
@@ -41,7 +68,7 @@ h1, h2, h3 {
 	align-items: center;
 	text-align: center;
 	background-size: cover;
-	background-image: url('/img/purple.jpg');
+	background-image: url('/img/pattern.svg');
 	background-color: grey;
 	background-attachment: fixed;
 	height: calc(100vh - 50px);
