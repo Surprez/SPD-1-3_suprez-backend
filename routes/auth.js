@@ -47,4 +47,22 @@ module.exports = (app) => {
         })
 
     })
+
+    app.post("/login", (req, res) => {
+
+        User.findOne({
+            userName: req.userName
+        }).exec()
+        .then(user => {
+            bcrypt.compare(req.body.password, user.password, (err, result) => {
+
+                if(err){
+                    return res.status(401).json({
+                        failed: 'Unauthorized Acess'
+
+                    });
+                }
+            })
+        })
+    })
 }
