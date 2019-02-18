@@ -5,18 +5,34 @@ const bodyParser = require("body-parser");
 const methodOverride = require("method-override");
 const path = require("path");
 
+
 // define app, vital for using middleware!!
 const app = express();
 
+
+
 // use body parser to get req.body
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+
+app.use(bodyParser.json({
+	type: ''
+}));
+app.use(bodyParser.urlencoded({
+	extended: true
+}));
+
+// import auth
+const auth = require("./routes/auth")(app);
 
 // use static folder structure
 app.use(express.static(path.join(__dirname, "static")));
 
 // override when POST has ?_method=DELETE or ?_method=PUT
 app.use(methodOverride("_method"));
+
+//import.env
+require('dotenv').config()
+
 
 // mount home route
 app.get("/", (req, res) => {
@@ -42,8 +58,9 @@ app.listen(port, () => {
 
 mongoose.Promise = global.Promise;
 mongoose.connect(
-	url,
-	{ useNewUrlParser: true },
+	url, {
+		useNewUrlParser: true
+	},
 	(err, db) => {
 		console.log("app connected successfully to database");
 	}
