@@ -1,17 +1,29 @@
 // Reference
 // https://goshakkk.name/array-form-inputs/
 
+// TODO: Add this to CSS
+// .keyword {
+//     display: flex;
+//     direction: row;
+//     align-items: center;
+//   }
+  
+//   .keyword button {
+//     margin: 0;
+//     margin-left: 10px;
+//   }
+
 import React from "react";
 import ReactDOM from "react-dom";
 
 import "./style.css";
 
-class IncorporationForm extends React.Component {
+class KeywordForm extends React.Component {
   constructor() {
     super();
     this.state = {
       name: "",
-      shareholders: [{ name: "" }]
+      keywords: [{ name: "" }]
     };
   }
 
@@ -19,29 +31,29 @@ class IncorporationForm extends React.Component {
     this.setState({ name: evt.target.value });
   };
 
-  handleShareholderNameChange = idx => evt => {
-    const newShareholders = this.state.shareholders.map((shareholder, sidx) => {
-      if (idx !== sidx) return shareholder;
-      return { ...shareholder, name: evt.target.value };
+  handleKeywordChange = idx => evt => {
+    const newKeywords = this.state.keywords.map((keyword, sidx) => {
+      if (idx !== sidx) return keyword;
+      return { ...keyword, name: evt.target.value };
     });
 
-    this.setState({ shareholders: newShareholders });
+    this.setState({ keywords: newKeywords });
   };
 
   handleSubmit = evt => {
-    const { name, shareholders } = this.state;
-    alert(`Incorporated: ${name} with ${shareholders.length} shareholders`);
+    const { name, keywords } = this.state;
+    alert(`Incorporated: ${name} with ${keywords.length} keywords`);
   };
 
-  handleAddShareholder = () => {
+  handleAddKeyword = () => {
     this.setState({
-      shareholders: this.state.shareholders.concat([{ name: "" }])
+      keywords: this.state.keywords.concat([{ name: "" }])
     });
   };
 
   handleRemoveShareholder = idx => () => {
     this.setState({
-      shareholders: this.state.shareholders.filter((s, sidx) => idx !== sidx)
+      keywords: this.state.keywords.filter((s, sidx) => idx !== sidx)
     });
   };
 
@@ -50,20 +62,20 @@ class IncorporationForm extends React.Component {
       <form onSubmit={this.handleSubmit}>
         <input
           type="text"
-          placeholder="Company name, e.g. Magic Everywhere LLC"
+          placeholder="Presentation Name"
           value={this.state.name}
           onChange={this.handleNameChange}
         />
 
         <h4>Keywords</h4>
 
-        {this.state.shareholders.map((shareholder, idx) => (
-          <div className="shareholder">
+        {this.state.keywords.map((keyword, idx) => (
+          <div className="keyword">
             <input
               type="text"
               placeholder={`Keyword #${idx + 1}`}
-              value={shareholder.name}
-              onChange={this.handleShareholderNameChange(idx)}
+              value={keyword.name}
+              onChange={this.handleKeywordChange(idx)}
             />
             <button
               type="button"
@@ -76,7 +88,7 @@ class IncorporationForm extends React.Component {
         ))}
         <button
           type="button"
-          onClick={this.handleAddShareholder}
+          onClick={this.handleAddKeyword}
           className="small"
         >
           Add Keyword
@@ -88,4 +100,4 @@ class IncorporationForm extends React.Component {
 }
 
 const rootElement = document.getElementById("root");
-ReactDOM.render(<IncorporationForm />, rootElement);
+ReactDOM.render(<KeywordForm />, rootElement);
