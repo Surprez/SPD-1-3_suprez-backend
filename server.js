@@ -1,12 +1,19 @@
+
 // require middleware packages
-const mongoose = require("mongoose");
 const express = require("express");
 const bodyParser = require("body-parser");
+const mongoose = require("mongoose");
 const methodOverride = require("method-override");
 const path = require("path");
+// import express from 'express';
+// import bodyParser from 'body-parser';
+// import mongoose from 'mongoose';
+// import methodOverride from 'method-override';
+// import path from 'path';
 
 // define app, vital for using middleware!!
 const app = express();
+const router = express.Router();
 
 // use body parser to get req.body
 app.use(bodyParser.json());
@@ -19,7 +26,7 @@ app.use(express.static(path.join(__dirname, "static")));
 app.use(methodOverride("_method"));
 
 // mount home route
-app.get("/", (req, res) => {
+app.get('/', (req, res) => {
 	res.sendFile(__dirname + "/index.html");
 });
 
@@ -34,7 +41,7 @@ app.get("/", (req, res) => {
 // process.env.PORT & MONGODB_URI lets the port and database be set by Heroku
 // if they don"t exist, set them for local dev purposes
 const port = process.env.PORT || 8080;
-const url = process.env.MONGODB_URI || "mongodb://localhost/arcane-surge-v2";
+const url = process.env.MONGODB_URI || "mongodb://localhost/suprez";
 
 app.listen(port, () => {
 	console.log(`app listening on port http://localhost:${port}/`)
