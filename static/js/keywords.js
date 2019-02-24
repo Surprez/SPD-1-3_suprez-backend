@@ -41,8 +41,6 @@ class KeywordForm extends React.Component {
   };
 
   handleSubmit = evt => {
-    const { name, keywords } = this.state;
-    alert(`Incorporated: ${name} with ${keywords.length} keywords`);
   };
 
   handleAddKeyword = () => {
