@@ -82,7 +82,7 @@ class KeywordForm extends React.Component {
 							className="small"
 						>
 							-
-            </button>
+						</button>
 					</div>
 				))}
 				<button
@@ -91,7 +91,7 @@ class KeywordForm extends React.Component {
 					className="small"
 				>
 					Add Keyword
-        </button>
+				</button>
 				<button>Submit</button>
 			</form>
 		);
