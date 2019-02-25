@@ -2,7 +2,7 @@ const path = require("path");
 const webpack = require("webpack");
 
 module.exports = {
-	entry: "./source/index.jsx",
+	entry: "./source/bundle.js",
 	mode: "development",
 	module: {
 		rules: [
