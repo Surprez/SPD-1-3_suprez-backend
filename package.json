@@ -23,7 +23,8 @@
 		"mongoose": "^5.4.7",
 		"path": "^0.12.7",
 		"react": "^16.8.3",
-		"react-dom": "^16.8.3"
+		"react-dom": "^16.8.3",
+		"react-hot-loader": "^4.7.1"
 	},
 	"devDependencies": {
 		"@babel/cli": "^7.2.3",
