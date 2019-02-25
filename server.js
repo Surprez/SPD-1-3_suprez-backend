@@ -31,7 +31,7 @@ app.all('*', (request, response) => {
 });
 
 // mount home route
-app.get('/', (req, res) => {
+router.get('/', (req, res) => {
 	res.sendFile(__dirname + '/index.html');
 });
 
@@ -64,4 +64,4 @@ mongoose.connect(
 mongoose.set('useCreateIndex', true) // removes deprication warning
 mongoose.connection.on('error', console.error.bind(console, 'MongoDB connection Error:'));
 
-module.exports = app
+module.exports = app;
