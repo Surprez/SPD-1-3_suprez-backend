@@ -4,6 +4,7 @@
 	"description": "impulsive presentation web app",
 	"main": "server.js",
 	"scripts": {
+		"start": "webpack-dev-server --mode development",
 		"test": "echo \"Error: no test specified\" && exit 1"
 	},
 	"repository": {
