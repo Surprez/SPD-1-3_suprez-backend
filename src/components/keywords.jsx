@@ -15,7 +15,7 @@
 
 import React from "react";
 import ReactDOM from "react-dom";
-import "./style.css";
+// import "./style.css";
 
 class KeywordForm extends React.Component {
 	constructor() {
@@ -63,6 +63,7 @@ class KeywordForm extends React.Component {
 					value={this.state.name}
 					onChange={this.handleNameChange}
 				/>
+
 				<h4>Keywords</h4>
 
 				{this.state.keywords.map((keyword, idx) => (
@@ -95,5 +96,5 @@ class KeywordForm extends React.Component {
 	}
 }
 
-const rootElement = document.getElementById("root");
-ReactDOM.render(<KeywordForm />, rootElement);
+
+export default KeywordForm

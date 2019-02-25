@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from "./components/app.js";
+import App from "./components/app.jsx";
 // important to become a PWA ↓ ↓ ↓ ↓
 // import registerServiceWorker from './registerServiceWorker';
 
