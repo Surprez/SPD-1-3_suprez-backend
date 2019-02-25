@@ -33,7 +33,6 @@ app.use(methodOverride("_method"));
 //import.env
 require('dotenv').config()
 
-
 // mount home route
 app.get("/", (req, res) => {
 	res.sendFile(__dirname + "/index.html");

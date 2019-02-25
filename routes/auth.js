@@ -22,7 +22,7 @@ module.exports = app => {
 				// create a new user object
 				const user = new User({
 					Account_id: new mongoose.Types.ObjectId(),
-					userName: req.body.userName,
+					username: req.body.username,
 					password: hash
 				});
 				// save the user object then send jwt to client
@@ -53,7 +53,7 @@ module.exports = app => {
 	app.post("/login", (req, res) => {
 		// search mongo db to see of user exist
 		User.findOne({
-			userName: req.body.userName
+			username: req.body.username
 		})
 			.exec()
 			.then(user => {

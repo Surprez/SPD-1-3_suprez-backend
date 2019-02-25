@@ -16,13 +16,13 @@ UserSchema = new Schema({
 	},
 
 	// require user provide username
-	userName: {
+	username: {
 		type: String,
 		unique: true,
 		required: true
 	},
 
-	//require user give password
+	//require user give passwords
 	password: {
 		type: String,
 		required: true
