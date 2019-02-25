@@ -2,7 +2,7 @@ const path = require("path");
 const webpack = require("webpack");
 
 module.exports = {
-	entry: "./source/bundle.js",
+	entry: "./src/bundle.js",
 	mode: "development",
 	module: {
 		rules: [
@@ -25,7 +25,7 @@ module.exports = {
 		filename: "bundle.js"
 	},
 	devServer: {
-		contentBase: path.join(__dirname, "static/"),
+		contentBase: path.join(__dirname, "pub/"),
 		port: 8080,
 		publicPath: "http://localhost:8080/dist/",
 		hotOnly: true

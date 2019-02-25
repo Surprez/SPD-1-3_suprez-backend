@@ -19,7 +19,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // use static folder structure
-app.use(express.static(path.join(__dirname, 'static')));
+app.use(express.static(path.join(__dirname, 'pub')));
 
 // override when POST has ?_method=DELETE or ?_method=PUT
 app.use(methodOverride('_method'));
