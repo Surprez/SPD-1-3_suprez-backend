@@ -15,8 +15,7 @@
 
 import React from "react";
 import ReactDOM from "react-dom";
-
-import "./style.css";
+// import "./style.css";
 
 class KeywordForm extends React.Component {
 	constructor() {
@@ -41,7 +40,6 @@ class KeywordForm extends React.Component {
 	};
 
 	handleSubmit = evt => {
-		//   TODO
 	};
 
 	handleAddKeyword = () => {
@@ -81,7 +79,7 @@ class KeywordForm extends React.Component {
 							onClick={this.handleRemoveShareholder(idx)}
 							className="small"
 						>
-							-
+							&minus;
 						</button>
 					</div>
 				))}
@@ -98,5 +96,5 @@ class KeywordForm extends React.Component {
 	}
 }
 
-const rootElement = document.getElementById("root");
-ReactDOM.render(<KeywordForm />, rootElement);
+
+export default KeywordForm
