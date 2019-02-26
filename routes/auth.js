@@ -24,7 +24,8 @@ router.post('/signup', (req, res) => { // USER SIGNUP
 
 		// error handling block
 		if (error) {
-			return res.status(500).json({ error });
+			console.log('server error:\n', error);
+			return res.status(500).json({ error: error.message });
 		} else {
 
 			// create a new user object
@@ -51,31 +52,25 @@ router.post('/signup', (req, res) => { // USER SIGNUP
 				// final error catcher
 				.catch((error) => {
 					console.log('user signup error:\n', error);
-					return res.status(500).json({ error });
+					return res.status(500).json({ error: error.message });
 				});
 		}
 	});
 });
 
 router.post('/login', (req, res) => {
-	console.log('it hits')
+
 	// search db for user, if they exist
 	User.findOne({ username: req.body.username })
 		.exec()
 		.then((MyUser) => {
-			console.log(MyUser.password)
-			console.log(req.body.password)
+
 			// compare input password to password stored in db
 			bcrypt.compare(req.body.password, MyUser.password, (error, result) => {
 
 				// error handling block
-				if (error || result === undefined) {
-					console.log('unauthorized access:\n', error);
-					return res.status(401).json({ error });
-				}
-
 				// if result is true create ans send jwt
-				if (result) {
+				if (result && !error) {
 					let token = jwt.sign(
 						{ id: MyUser.accountID },
 						process.env.SECRET,
@@ -83,6 +78,9 @@ router.post('/login', (req, res) => {
 					);
 					console.log('successful login:\n', token);
 					return res.status(200).json({ token });
+				} else {
+					console.log('unauthorized access:\n', error);
+					return res.status(401).json({ error: error.message });
 				}
 			});
 		})
@@ -90,7 +88,7 @@ router.post('/login', (req, res) => {
 		// final error catcher
 		.catch((error) => {
 			console.log('server error:\n', error);
-			return res.status(500).json({ error });
+			return res.status(500).json({ error: error.message });
 		});
 });
 
