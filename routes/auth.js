@@ -1,23 +1,23 @@
 // import modules
-const User = require("../models/user");
+const User = require('../models/user');
 const express = require('express');
-const mongoose = require("mongoose");
-const bcrypt = require("bcrypt");
-const jwt = require("jsonwebtoken");
+const mongoose = require('mongoose');
+const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 
 // new express router
 const router = new express.Router();
 
 // set up routes
 router.get('/signup', (req, res) => { // GET SIGN UP FORM
-	res.redirect("signup.html");
+	res.redirect('signup.html');
 });
 
 router.get('/login', (req, res) => { // GET LOG IN FORM
-	res.redirect("login.html");
+	res.redirect('login.html');
 });
 
-router.post("/signup", (req, res) => { // USER SIGNUP
+router.post('/signup', (req, res) => { // USER SIGNUP
 
 	// encrypt password set salt to 10
 	bcrypt.hash(req.body.password, 10, (error, hash) => {
@@ -40,23 +40,23 @@ router.post("/signup", (req, res) => { // USER SIGNUP
 				.then((MyUser) => {
 					const JWTToken = jwt.sign(
 						{ _id: MyUser.accountID },
-						{ expiresIn: "2h" },
-						process.env.SECRET
+						sprocess.env.SECRET,
+						{ expiresIn: '2h' }
 					);
-					console.log("user account created:\n", MyUser);
-					return res.json(JWTToken).status(200);
+					console.log('user account created:\n', MyUser);
+					return res.status(200).json({ JWTToken });
 				})
 
 				// final error catcher
-				.catch(error => {
-					console.log("user signup error:\n", error);
+				.catch((error) => {
+					console.log('user signup error:\n', error);
 					return res.status(500).json({ error });
 				});
 		}
 	});
 });
 
-router.post("/login", (req, res) => {
+router.post('/login', (req, res) => {
 	// search mongo db to see of user exist
 	User.findOne({
 		username: req.body.username
@@ -64,11 +64,11 @@ router.post("/login", (req, res) => {
 		.exec()
 		.then((MyUser) => {
 			// compare input password to password stored in db
-			bcrypt.compare(req.body.password, MyUser.password, (err, result) => {
+			bcrypt.compare(req.body.password, MyUser.password, (error, result) => {
 
 				// error handling block
 				if (error) {
-					console.log("unauthorized access:\n", error);
+					console.log('unauthorized access:\n', error);
 					return res.status(401).json({ error });
 				}
 
@@ -76,18 +76,18 @@ router.post("/login", (req, res) => {
 				if (result) {
 					let token = jwt.sign(
 						{ id: MyUser.accountID },
-						{ expiresIn: "60d" },
-						process.env.SECRET
+						process.env.SECRET,
+						{ expiresIn: '60d' }
 					);
-					console.log("successful login:\n", token);
+					console.log('successful login:\n', token);
 					return res.status(200).json({ token });
 				}
 			});
 		})
 
 		// final error catcher
-		.catch(error => {
-			console.log("server error:\n", error);
+		.catch((error) => {
+			console.log('server error:\n', error);
 			return res.status(500).json({ error });
 		});
 });
