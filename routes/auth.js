@@ -38,6 +38,7 @@ router.post('/signup', (req, res) => { // USER SIGNUP
 			NewUser
 				.save()
 				.then((MyUser) => {
+					console.log(MyUser)
 					const JWTToken = jwt.sign(
 						{ _id: MyUser.accountID },
 						process.env.SECRET,
@@ -57,11 +58,13 @@ router.post('/signup', (req, res) => { // USER SIGNUP
 });
 
 router.post('/login', (req, res) => {
-
+	console.log('it hits')
 	// search db for user, if they exist
 	User.findOne({ username: req.body.username })
 		.exec()
 		.then((MyUser) => {
+			console.log(MyUser.password)
+			console.log(req.body.password)
 			// compare input password to password stored in db
 			bcrypt.compare(req.body.password, MyUser.password, (error, result) => {
 
@@ -80,6 +83,8 @@ router.post('/login', (req, res) => {
 					);
 					console.log('successful login:\n', token);
 					return res.status(200).json({ token });
+				} else {
+					console.log('oh no!')
 				}
 			});
 		})
