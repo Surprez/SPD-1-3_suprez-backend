@@ -50,7 +50,7 @@ app.use('/', auth)
 // process.env.PORT & MONGODB_URI lets the port and database be set by Heroku
 // if they don"t exist, set them for local dev purposes
 const port = process.env.PORT || 8080;
-const url = process.env.MONGODB_URI || "mongodb://localhost/arcane-surge-v2";
+const url = process.env.MONGODB_URI || "mongodb://localhost/suprez";
 
 app.listen(port, () => {
 	console.log(`app listening on port http://localhost:${port}/`)

@@ -7,10 +7,10 @@ const Schema = mongoose.Schema;
 UserSchema = new Schema({
 
 	// give user an account ID
-	Account_Id: mongoose.Schema.ObjectId,
+	accountID: mongoose.Schema.ObjectId,
 
 	//timestamp when user signups
-	createdAt: {
+	creation: {
 		type: Date,
 		default: Date.now
 	},
