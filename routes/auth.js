@@ -1,9 +1,9 @@
 // import modules
+const jwt = require('jsonwebtoken');
 const User = require('../models/user');
+const bcrypt = require('bcrypt');
 const express = require('express');
 const mongoose = require('mongoose');
-const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
 
 // new express router
 const router = new express.Router();
@@ -19,7 +19,7 @@ router.get('/login', (req, res) => { // GET LOG IN FORM
 
 router.post('/signup', (req, res) => { // USER SIGNUP
 
-	// encrypt password set salt to 10
+	// encrypt password & add salting to 10
 	bcrypt.hash(req.body.password, 10, (error, hash) => {
 
 		// error handling block
@@ -40,7 +40,7 @@ router.post('/signup', (req, res) => { // USER SIGNUP
 				.then((MyUser) => {
 					const JWTToken = jwt.sign(
 						{ _id: MyUser.accountID },
-						sprocess.env.SECRET,
+						process.env.SECRET,
 						{ expiresIn: '2h' }
 					);
 					console.log('user account created:\n', MyUser);
@@ -57,10 +57,9 @@ router.post('/signup', (req, res) => { // USER SIGNUP
 });
 
 router.post('/login', (req, res) => {
-	// search mongo db to see of user exist
-	User.findOne({
-		username: req.body.username
-	})
+
+	// search db for user, if they exist
+	User.findOne({ username: req.body.username })
 		.exec()
 		.then((MyUser) => {
 			// compare input password to password stored in db
