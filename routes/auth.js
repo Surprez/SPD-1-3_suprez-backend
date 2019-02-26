@@ -9,54 +9,48 @@ const jwt = require("jsonwebtoken");
 const router = new express.Router();
 
 // set up routes
-router.get('/signup', (req, res) => {
+router.get('/signup', (req, res) => { // GET SIGN UP FORM
 	res.redirect("signup.html");
 });
 
-router.get('/login', (req, res) => {
+router.get('/login', (req, res) => { // GET LOG IN FORM
 	res.redirect("login.html");
 });
 
-router.post("/signup", (req, res) => {
-	// this route will handle signing up users
+router.post("/signup", (req, res) => { // USER SIGNUP
 
-	console.log("This is password before", req.body.password);
 	// encrypt password set salt to 10
-	bcrypt.hash(req.body.password, 10, (err, hash) => {
-		console.log("This is password after", req.body.password);
+	bcrypt.hash(req.body.password, 10, (error, hash) => {
 
-		//error handlor
-		if (err) {
-			return res.status(500).json({
-				error: err
-			});
+		// error handling block
+		if (error) {
+			return res.status(500).json({ error });
 		} else {
+
 			// create a new user object
-			const user = new User({
-				Account_id: new mongoose.Types.ObjectId(),
+			const NewUser = new User({
+				accountID: new mongoose.Types.ObjectId(),
 				username: req.body.username,
 				password: hash
 			});
+
 			// save the user object then send jwt to client
-			user
+			NewUser
 				.save()
-				.then(result => {
-					const JWTToken = jwt.sign({
-						_id: result.Account_id
-					},
-						process.env.SECRET, {
-							expiresIn: "2h"
-						}
+				.then((MyUser) => {
+					const JWTToken = jwt.sign(
+						{ _id: MyUser.accountID },
+						{ expiresIn: "2h" },
+						process.env.SECRET
 					);
-					console.log("user account created", result);
+					console.log("user account created:\n", MyUser);
 					return res.json(JWTToken).status(200);
-					// error handlor
 				})
+
+				// final error catcher
 				.catch(error => {
-					console.log("User signup error:", error);
-					res.status(500).json({
-						error: err
-					});
+					console.log("user signup error:\n", error);
+					return res.status(500).json({ error });
 				});
 		}
 	});
@@ -68,33 +62,33 @@ router.post("/login", (req, res) => {
 		username: req.body.username
 	})
 		.exec()
-		.then(user => {
-			//compare the password the user enter and the password stored in the db
+		.then((MyUser) => {
+			// compare input password to password stored in db
+			bcrypt.compare(req.body.password, MyUser.password, (err, result) => {
 
-			bcrypt.compare(req.body.password, user.password, (err, result) => {
-				// error handler
-				if (err) {
-					return res.status(401).json({
-						failed: "Unauthorized Acess"
-					});
+				// error handling block
+				if (error) {
+					console.log("unauthorized access:\n", error);
+					return res.status(401).json({ error });
 				}
+
 				// if result is true create ans send jwt
 				if (result) {
-					let token = jwt.sign({
-						id: user.Account_Id
-					},
-						process.env.SECRET, {
-							expiresIn: "60 days"
-						}
+					let token = jwt.sign(
+						{ id: MyUser.accountID },
+						{ expiresIn: "60d" },
+						process.env.SECRET
 					);
-					res.status(200).json(token);
+					console.log("successful login:\n", token);
+					return res.status(200).json({ token });
 				}
 			});
-		}) // error handler
+		})
+
+		// final error catcher
 		.catch(error => {
-			res.status(500).json({
-				error: "server side error"
-			});
+			console.log("server error:\n", error);
+			return res.status(500).json({ error });
 		});
 });
 
