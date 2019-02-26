@@ -1,6 +1,7 @@
 
 // import modules
 const mongoose = require("mongoose");
+const validator = require('mongoose-unique-validator')
 const Schema = mongoose.Schema;
 
 // created new user models
@@ -29,6 +30,9 @@ UserSchema = new Schema({
 	}
 
 })
+
+
+UserSchema.plugin(validator)
 
 // exports model
 module.exports = mongoose.model("User", UserSchema);

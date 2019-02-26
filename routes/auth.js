@@ -69,7 +69,7 @@ router.post('/login', (req, res) => {
 			bcrypt.compare(req.body.password, MyUser.password, (error, result) => {
 
 				// error handling block
-				if (error) {
+				if (error || result === undefined) {
 					console.log('unauthorized access:\n', error);
 					return res.status(401).json({ error });
 				}
@@ -83,8 +83,6 @@ router.post('/login', (req, res) => {
 					);
 					console.log('successful login:\n', token);
 					return res.status(200).json({ token });
-				} else {
-					console.log('oh no!')
 				}
 			});
 		})
