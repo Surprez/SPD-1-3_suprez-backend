@@ -27,8 +27,12 @@ UserSchema = new Schema({
 	password: {
 		type: String,
 		required: true
-	}
+	},
 
+	// a user creates keywords once logged in
+	keywords: [{
+		type: String
+	}]
 })
 
 
