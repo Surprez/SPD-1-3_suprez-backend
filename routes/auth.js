@@ -46,7 +46,9 @@ router.post("/signup", (req, res) => {
             { expiresIn: "2h" }
           );
           console.log("user account created:\n", MyUser);
-          return res.cookie("token", JWTToken, { httpOnly: true }).status(200);
+          return res
+            .cookie("token", JWTToken, { httpOnly: true })
+            .sendStatus(200);
           //   return res.status(200).json({ JWTToken });
         })
 
