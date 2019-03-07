@@ -2,6 +2,9 @@
 > ### Check out our [Frontend Repo!](https://github.com/noltron000/SPD-1-3_suprez-frontend)
 Not presentations, experiences.
 
+[![HitCount](http://hits.dwyl.io/Suprez/https://github.com/noltron000/SPD-1-3_suprez-backend.svg)](http://hits.dwyl.io/Suprez/https://github.com/noltron000/SPD-1-3_suprez-backend)
+[![Version](https://img.shields.io/badge/Version-1.0.0-blue.svg)](https://shields.io/#your-badge)
+
 ## Info
 To run our app:
 1. download the repository
