@@ -1,4 +1,8 @@
-# Suprez!
+# Suprez
+> ### Check out our [Frontend Repo!](https://github.com/noltron000/SPD-1-3_suprez-frontend)
+Not presentations, experiences.
+
+## Info
 To run our app:
 1. download the repository
 1. `cd` into the directory in your terminal
