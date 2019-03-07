@@ -1,3 +1,7 @@
+<p align="center">
+    <img src="https://i.imgur.com/LBj9G8k.png" width = "250" />
+</p>
+
 # Suprez
 > ### Check out our [Frontend Repo!](https://github.com/noltron000/SPD-1-3_suprez-frontend)
 
