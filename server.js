@@ -3,7 +3,11 @@ const mongoose = require("mongoose");
 const express = require("express");
 const bodyParser = require("body-parser");
 const methodOverride = require("method-override");
+let cors = require('cors');
 const path = require("path");
+
+
+
 
 // require config items
 require('dotenv').config();
@@ -24,6 +28,7 @@ app.use(bodyParser.urlencoded({
 	extended: true
 }));
 
+app.use(cors)
 // import auth
 
 // use static folder structure
