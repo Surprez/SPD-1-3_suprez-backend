@@ -9,8 +9,8 @@
 }
 
 /* === Raleway font ===
-   Note: using lighter font weights
-   Note: excluding extended latin charset for speed
+	 Note: using lighter font weights
+	 Note: excluding extended latin charset for speed
 */
 @font-face { /* regular */
 	font-family: 'Raleway';
@@ -46,8 +46,8 @@
 
 
 /* === Lato font ===
-   Note: using lighter font weights
-   Note: excluding extended latin charset for speed
+	 Note: using lighter font weights
+	 Note: excluding extended latin charset for speed
 */
 @font-face { /* regular */
 	font-family: 'Lato';
