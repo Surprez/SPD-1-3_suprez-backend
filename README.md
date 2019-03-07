@@ -5,7 +5,7 @@
 # Suprez
 > ### Check out our [Frontend Repo!](https://github.com/noltron000/SPD-1-3_suprez-frontend)
 
-> ### View our [Live Demo](https://suprez.netlify.com)
+> ### View our [Backend Demo](https://suprez.herokuapp.com)
 Not presentations, experiences.
 
 [![HitCount](http://hits.dwyl.io/Suprez/https://github.com/noltron000/SPD-1-3_suprez-backend.svg)](http://hits.dwyl.io/Suprez/https://github.com/noltron000/SPD-1-3_suprez-backend)
