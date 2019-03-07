@@ -10,6 +10,7 @@ Not presentations, experiences.
 
 [![HitCount](http://hits.dwyl.io/Suprez/https://github.com/noltron000/SPD-1-3_suprez-backend.svg)](http://hits.dwyl.io/Suprez/https://github.com/noltron000/SPD-1-3_suprez-backend)
 [![Version](https://img.shields.io/badge/Version-1.0.0-blue.svg)](https://shields.io/#your-badge)
+![Heroku](http://heroku-badge.herokuapp.com/?app=angularjs-crypto&style=flat&svg=1)
 
 ## What is Suprez?
 When it comes to great performances what characteristics come to mind? Charisma? What about stage presence? Suprez is here to help with that. Many presenters are restricted in their movements. They are tethered to the small confined area that their laptops reside in. Someone has to change slides and understand the flow of your presentation. Often times that someone is you. 
