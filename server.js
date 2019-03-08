@@ -1,75 +1,71 @@
 // require middleware packages
-const mongoose = require("mongoose");
-const express = require("express");
-const bodyParser = require("body-parser");
-const methodOverride = require("method-override");
-let cors = require('cors');
-const path = require("path");
-
-
-
+const mongoose = require('mongoose')
+const express = require('express')
+const bodyParser = require('body-parser')
+const methodOverride = require('method-override')
+const cors = require('cors')
+const path = require('path')
 
 // require config items
-require('dotenv').config();
+require('dotenv').config()
 
 
 // define app, vital for using middleware!!
-const app = express();
+const app = express()
 
-
+// import cors - cross origin resource scripting
+app.use(cors())
 
 // use body parser to get req.body
-app.use(bodyParser.json());
+app.use(bodyParser.json())
 
-app.use(bodyParser.json({ type: '' }));
+app.use(bodyParser.json({ type: '' }))
 
-app.use(bodyParser.urlencoded({ extended: true }));
-
-app.use(cors)
-// import auth
+app.use(bodyParser.urlencoded({ extended: true }))
 
 // use static folder structure
-app.use(express.static(path.join(__dirname, "static")));
+app.use(express.static(path.join(__dirname, 'static')))
 
 // override when POST has ?_method=DELETE or ?_method=PUT
-app.use(methodOverride("_method"));
+app.use(methodOverride('_method'))
 
 // mount home route
-app.get("/", (req, res) => {
-	res.sendFile(__dirname + "/index.html");
-});
+app.get('/', (req, res) => {
+	res.sendFile(__dirname + '/index.html')
+})
 
 // // require internal files
-// const asset1 = require("./routes/asset1.js");
-// const asset2 = require("./routes/asset2.js");
-const auth = require("./routes/auth.js");
-// const keywords = require("./routes/keywords.js");
+// const asset1 = require('./routes/asset1.js')
+// const asset2 = require('./routes/asset2.js')
+const auth = require('./routes/auth.js')
+const keywords = require('./routes/keywords.js')
 
 // // mount remaining routes
+// app.use('/asset1', asset1)
+// app.use('/asset2', asset2)
 app.use('/', auth)
-// app.use('/keywords', keywords);
-// app.use("/asset2", asset2);
+app.use('/keywords', keywords)
 
 // process.env.PORT & MONGODB_URI lets the port and database be set by Heroku
-// if they don"t exist, set them for local dev purposes
-const port = process.env.PORT || 8080;
-const url = process.env.MONGODB_URI || "mongodb://localhost/suprez";
+// if they don't exist, set them for local dev purposes
+const port = process.env.PORT || 8080
+const url = process.env.MONGODB_URI || 'mongodb://localhost/suprez'
 
 app.listen(port, () => {
 	console.log(`app listening on port http://localhost:${port}/`)
 })
 
-mongoose.Promise = global.Promise;
+mongoose.Promise = global.Promise
 mongoose.connect(
 	url, {
 		useNewUrlParser: true
 	},
 	(err, db) => {
-		console.log("app connected successfully to database");
+		console.log('app connected successfully to database')
 	}
-);
+)
 
-mongoose.set("useCreateIndex", true) // removes deprication warning
-mongoose.connection.on("error", console.error.bind(console, "MongoDB connection Error:"));
+mongoose.set('useCreateIndex', true) // removes deprication warning
+mongoose.connection.on('error', console.error.bind(console, 'MongoDB connection Error:'))
 
 module.exports = app
