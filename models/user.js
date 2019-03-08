@@ -34,7 +34,6 @@ UserSchema = new Schema({
 	}]
 })
 
-
 UserSchema.plugin(validator)
 
 // exports model

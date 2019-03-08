@@ -1,5 +1,5 @@
 <p align='center'>
-    <img src='https://i.imgur.com/LBj9G8k.png' width = '250' />
+	<img src='https://i.imgur.com/LBj9G8k.png' width='250' />
 </p>
 
 # Suprez
@@ -17,11 +17,11 @@ When it comes to great performances what characteristics come to mind? Charisma?
 That's where Suprez comes in. By using your voice Suprez can trigger on certain words that you would already talk about. Visuals and slides are generated dynamically. For example, you can talk about the 'lightbulb' moment that you had when talking about your startup and have a lightbulb pop up on screen or the 'spark' that drives you.
 
 ## Info
-To run our app:
+To run our backend app:
 1. download the repository
 1. `cd` into the directory in your terminal
 1. type `npm install` in console
 1. type `nodemon` to start the app
 1. go to `http://localhost:8080` in your browser
 
-> Visit https://suprez.herokuapp.com/ to see this app live
+\* NOTE: you really should be looking at the frontend unless you are developing!

@@ -5,6 +5,7 @@ const express = require('express')
 // new express router
 const router = new express.Router()
 
+// set up routes
 router.get('/', (req, res) => { // GET KEYWORDS FORM IF LOGGED IN
 	// check if logged in
 	if (true) {
@@ -14,23 +15,17 @@ router.get('/', (req, res) => { // GET KEYWORDS FORM IF LOGGED IN
 	}
 })
 
-// set up routes
 router.post('/', (req, res) => {
+	console.log('keywords route post!')
 	User
 		.findOneAndUpdate('')
-		.then(() => {
-
-		})
+		.then(() => { })
 		.catch((err) => {
 			res.status(400).json({
 				'error': err,
 				'status': 400
 			})
 		})
-
-	// try {
-	// 	const keyword = await User.create(req.body)
-	// } catch (err) {
 })
 
 // export routes

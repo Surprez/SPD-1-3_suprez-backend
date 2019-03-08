@@ -9,7 +9,6 @@ const path = require('path')
 // require config items
 require('dotenv').config()
 
-
 // define app, vital for using middleware!!
 const app = express()
 
