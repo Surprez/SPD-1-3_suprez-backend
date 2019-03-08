@@ -21,12 +21,9 @@ const app = express();
 // use body parser to get req.body
 app.use(bodyParser.json());
 
-app.use(bodyParser.json({
-	type: ''
-}));
-app.use(bodyParser.urlencoded({
-	extended: true
-}));
+app.use(bodyParser.json({ type: '' }));
+
+app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(cors)
 // import auth
@@ -43,13 +40,14 @@ app.get("/", (req, res) => {
 });
 
 // // require internal files
-// const asset1 = require("./controllers/asset1.js");
-// const asset2 = require("./controllers/asset2.js");
-const auth = require("./routes/auth");
+// const asset1 = require("./routes/asset1.js");
+// const asset2 = require("./routes/asset2.js");
+const auth = require("./routes/auth.js");
+// const keywords = require("./routes/keywords.js");
 
 // // mount remaining routes
 app.use('/', auth)
-// app.use("/asset1", asset1);
+// app.use('/keywords', keywords);
 // app.use("/asset2", asset2);
 
 // process.env.PORT & MONGODB_URI lets the port and database be set by Heroku
