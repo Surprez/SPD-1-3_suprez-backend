@@ -27,7 +27,9 @@ router.post("/signup", (req, res) => {
 		// error handling block
 		if (error) {
 			console.log("server error:\n", error);
-			return res.status(500).json({ error: error.message });
+			return res.status(500).json({
+				error: error.message
+			});
 		} else {
 			// create a new user object
 			const NewUser = new User({
@@ -40,22 +42,35 @@ router.post("/signup", (req, res) => {
 			NewUser.save()
 				.then(MyUser => {
 					console.log(MyUser);
-					const JWTToken = jwt.sign(
-						{ _id: MyUser.accountID },
-						process.env.SECRET,
-						{ expiresIn: "2h" }
+					const JWTToken = jwt.sign({
+							_id: MyUser.accountID
+						},
+						process.env.SECRET, {
+							expiresIn: "2h"
+						}
 					);
 					console.log("user account created:\n", MyUser);
-					return res
-						.cookie("token", JWTToken, { httpOnly: true })
-						.sendStatus(200);
-					//	 return res.status(200).json({ JWTToken });
+					// res
+					// 	.cookie("token", JWTToken, {
+					// 		httpOnly: true
+					// 	})
+					// 	.send();
+					// res.status(200).json({
+					// 	JWTToken
+					// });
+
+					res.cookie("token", JWTToken, {
+						httpOnly: true
+
+					}).send();
 				})
 
 				// final error catcher
 				.catch(error => {
 					console.log("user signup error:\n", error);
-					return res.status(500).json({ error: error.message });
+					return res.status(500).json({
+						error: error.message
+					});
 				});
 		}
 	});
@@ -65,7 +80,9 @@ router.post("/login", (req, res) => {
 	console.log("This route has been hit!");
 
 	// search db for user, if they exist
-	User.findOne({ username: req.body.username })
+	User.findOne({
+			username: req.body.username
+		})
 		.exec()
 		.then(MyUser => {
 			//	 console.log(MyUse)
@@ -75,20 +92,24 @@ router.post("/login", (req, res) => {
 				// error handling block
 				// if result is true create ans send jwt
 				if (result && !error) {
-					let JWTToken = jwt.sign(
-						{ id: MyUser.accountID },
-						process.env.SECRET,
-						{
+					let JWTToken = jwt.sign({
+							id: MyUser.accountID
+						},
+						process.env.SECRET, {
 							expiresIn: "60d"
 						}
 					);
 					console.log("successful login:\n", JWTToken);
 					return res
-						.cookie("token", JWTToken, { httpOnly: true })
+						.cookie("token", JWTToken, {
+							httpOnly: true
+						})
 						.sendStatus(200);
 				} else {
 					console.log("unauthorized access:\n", error);
-					return res.status(401).json({ error: error.message });
+					return res.status(401).json({
+						error: error.message
+					});
 				}
 			});
 		})
@@ -96,7 +117,9 @@ router.post("/login", (req, res) => {
 		// final error catcher
 		.catch(error => {
 			console.log("server error:\n", error);
-			return res.status(500).json({ error: error.message });
+			return res.status(500).json({
+				error: error.message
+			});
 		});
 });
 

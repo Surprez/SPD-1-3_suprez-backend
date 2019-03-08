@@ -7,14 +7,21 @@ let cors = require('cors');
 const path = require("path");
 
 
+// define app, vital for using middleware!!
+const app = express();
+
+app.use(cors())
+
+
+// import auth
+
 
 
 // require config items
 require('dotenv').config();
 
 
-// define app, vital for using middleware!!
-const app = express();
+
 
 
 
@@ -28,17 +35,10 @@ app.use(bodyParser.urlencoded({
 	extended: true
 }));
 
-app.use(cors)
-// import auth
 
 
-app.use(function(req, res, next) {
-    res.header("Access-Control-Allow-Origin", '*');
-    res.header("Access-Control-Allow-Credentials", true);
-    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
-    res.header("Access-Control-Allow-Headers", 'Origin,X-Requested-With,Content-Type,Accept,content-type,application/json');
-    next();
-});
+
+
 
 // use static folder structure
 app.use(express.static(path.join(__dirname, "static")));
