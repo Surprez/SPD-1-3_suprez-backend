@@ -11,6 +11,7 @@ const path = require("path");
 const app = express();
 
 app.use(cors())
+
 // app.all('*', function (req, res, next) {
 // 	var origin = req.get('origin');
 // 	res.header('Access-Control-Allow-Origin', origin);
@@ -18,13 +19,6 @@ app.use(cors())
 // 	res.header('Access-Control-Allow-Headers', 'Content-Type');
 // 	next();
 // });
-
-const cors_proxy = require('cors-anywhere');
-cors_proxy.createServer({
-	originWhitelist: [], // Allow all origins
-	requireHeader: ['origin', 'x-requested-with'],
-	removeHeaders: ['cookie', 'cookie2']
-})
 
 // .listen(port, host, function () {
 // 	console.log('Running CORS Anywhere on ' + host + ':' + port);
