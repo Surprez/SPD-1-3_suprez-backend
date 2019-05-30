@@ -43,8 +43,8 @@ router.post("/signup", (req, res) => {
 				.then(MyUser => {
 					console.log(MyUser);
 					const JWTToken = jwt.sign({
-							_id: MyUser.accountID
-						},
+						_id: MyUser.accountID
+					},
 						process.env.SECRET, {
 							expiresIn: "2h"
 						}
@@ -81,8 +81,8 @@ router.post("/login", (req, res) => {
 
 	// search db for user, if they exist
 	User.findOne({
-			username: req.body.username
-		})
+		username: req.body.username
+	})
 		.exec()
 		.then(MyUser => {
 			//	 console.log(MyUse)
@@ -93,8 +93,8 @@ router.post("/login", (req, res) => {
 				// if result is true create ans send jwt
 				if (result && !error) {
 					let JWTToken = jwt.sign({
-							id: MyUser.accountID
-						},
+						id: MyUser.accountID
+					},
 						process.env.SECRET, {
 							expiresIn: "60d"
 						}
